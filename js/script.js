@@ -4,6 +4,7 @@ class User {
         this.course = course;
         this.name = name;
         this.grade = [];
+        this.studentStatus = true;
     }
     getInfo() {
         return 'Студент '+ this.course+'го курсу ' + this.university + ' - ' + this.name;
@@ -12,25 +13,19 @@ class User {
         return this.grade;
     }
     set marks(grade) {
-        if( grade > 0 && grade <= 5 ){
+        if(this.studentStatus){
             this.grade.push(grade);
-        } else {
-            "У студента немає оцінок або введене не коректне число";
         }
     }
     getAverageMark(){ 
         return Math.round(this.grade.reduce((a,b)=> a + b)/this.grade.length);
     }
     dismiss() {
-        this.grade = null;
-        return "Студента виключено"
+        this.studentStatus = false;
     };
     recover() {
-        if (this.grade === null) {
-          this.grade =[]; 
-          return "Студента відновлено"; 
-        } 
-    };
+        this.studentStatus = true;
+        };
 }
 
 // Тask - 1
