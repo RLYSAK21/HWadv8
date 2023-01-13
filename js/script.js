@@ -10,7 +10,7 @@ class User {
         return 'Студент '+ this.course+'го курсу ' + this.university + ' - ' + this.name;
     }
     get marks() { 
-        return this.grade;
+        return this.studentStatus ? this.grade : null;
     }
     set marks(grade) {
         if(this.studentStatus){
@@ -53,9 +53,11 @@ console.log(firstStudent.marks);
 console.log(firstStudent.getAverageMark());
 
 // Тask-6
+firstStudent.dismiss();
 
-console.log(firstStudent.dismiss());
+console.log(firstStudent.marks);
 
 // Тask-7
 
-console.log(firstStudent.recover());
+firstStudent.recover();
+console.log(firstStudent.getInfo());
